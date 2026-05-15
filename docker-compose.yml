@@ -1,0 +1,28 @@
+services:
+  iso-extractor:
+    build: .
+    container_name: iso-extractor
+    restart: unless-stopped
+
+    volumes:
+      # Config file — edit config.yaml then restart the container
+      - ./config.yaml:/config/config.yaml:ro
+
+      # Mount your actual media paths here.
+      # The paths inside the container must match watch_dirs in config.yaml.
+      - /mnt/tank/media/tv:/media/tv
+      - /mnt/tank/media/movies:/media/movies
+
+    environment:
+      - CONFIG_PATH=/config/config.yaml
+
+    # MakeMKV needs access to optical drives if you ever feed it a physical disc.
+    # Comment these out if you're only processing downloaded ISOs (no disc needed).
+    # devices:
+    #   - /dev/sr0:/dev/sr0
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

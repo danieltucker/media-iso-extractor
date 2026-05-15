@@ -1,0 +1,30 @@
+watch_dirs:
+  - /media/tv
+  - /media/movies
+
+makemkv:
+  # Leave blank to run in trial mode (30-day, free)
+  license_key: ""
+  # Minimum title duration in seconds to consider it the main feature (filters out menus/extras)
+  min_title_seconds: 1800
+
+sonarr:
+  url: "http://localhost:8989"
+  api_key: ""
+
+radarr:
+  url: "http://localhost:7878"
+  api_key: ""
+
+plex:
+  url: "http://localhost:32400"
+  token: ""
+
+telegram:
+  bot_token: ""
+  chat_id: ""
+
+# Seconds to wait for a file to stop growing before treating it as fully written
+stability_wait_seconds: 30
+# How often (seconds) to poll file size during stability check
+stability_poll_interval: 5
